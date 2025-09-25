@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Explorar">
 
-    <include
-        android:id="@+id/fragment_header"
-        layout="@layout/fragment_header"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_header">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <!-- Título -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,343 +23,70 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"/>
 
-        <ScrollView
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_filters"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            app:chipSpacingHorizontal="8dp"
+            app:chipSpacingVertical="8dp"
+            android:layout_marginBottom="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="16dp">
+                android:text="Todo"
+                app:chipBackgroundColor="@color/viridian"
+                android:textColor="@color/white"
+                app:chipIcon="@drawable/ic_public"/>
 
-                <!-- Aquí se añadirá el contenido de Destinos, Filtros y Tarjetas -->
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lugares"
+                app:chipBackgroundColor="@color/ash_gray"
+                android:textColor="@color/brunswick_green"
+                app:chipIcon="@drawable/ic_location_24"/>
 
-                <!-- Sección de Destinos -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Destinos:"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/dark_green"
-                    android:layout_marginBottom="8dp"/>
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cultura"
+                app:chipBackgroundColor="@color/ash_gray"
+                android:textColor="@color/brunswick_green"
+                app:chipIcon="@drawable/ic_culture"/>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_zona_filtro"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:hint="Buscar por zona (ej. Ocotlán, Poncitlán)"
-                    app:startIconDrawable="@drawable/ic_search_24"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comida"
+                app:chipBackgroundColor="@color/ash_gray"
+                android:textColor="@color/brunswick_green"
+                app:chipIcon="@drawable/ic_food"/>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_zona_filtro"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text" />
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Leyendas"
+                app:chipBackgroundColor="@color/ash_gray"
+                android:textColor="@color/brunswick_green"
+                app:chipIcon="@drawable/ic_legend"/>
+        </com.google.android.material.chip.ChipGroup>
 
-                </com.google.android.material.textfield.TextInputLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none"
-                    android:layout_marginBottom="16dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Pueblo Mágico"
-                            android:backgroundTint="@color/viridian"
-                            android:textColor="@color/white"
-                            android:paddingStart="16dp"
-                            android:paddingEnd="16dp"
-                            android:layout_marginEnd="8dp"
-                            android:drawableStart="@drawable/ic_magic_town"/>
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Villa Colonial"
-                            android:backgroundTint="@color/ash_gray"
-                            android:textColor="@color/brunswick_green"
-                            android:paddingStart="16dp"
-                            android:paddingEnd="16dp"
-                            android:layout_marginEnd="8dp"
-                            android:drawableStart="@drawable/ic_villa"/>
-
-                    </LinearLayout>
-                </HorizontalScrollView>
-
-                <!-- Sección de Filtros -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Filtrar por:"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/dark_green"
-                    android:layout_marginBottom="8dp"/>
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chip_group_filters"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:chipSpacingHorizontal="8dp"
-                    app:chipSpacingVertical="8dp"
-                    android:layout_marginBottom="16dp">
-
-                    <com.google.android.material.chip.Chip
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Todo"
-                        app:chipBackgroundColor="@color/viridian"
-                        android:textColor="@color/white"
-                        app:chipIcon="@drawable/ic_public"/>
-
-                    <com.google.android.material.chip.Chip
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Lugares"
-                        app:chipBackgroundColor="@color/ash_gray"
-                        android:textColor="@color/brunswick_green"
-                        app:chipIcon="@drawable/ic_location_24"/>
-
-                    <com.google.android.material.chip.Chip
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cultura"
-                        app:chipBackgroundColor="@color/ash_gray"
-                        android:textColor="@color/brunswick_green"
-                        app:chipIcon="@drawable/ic_culture"/>
-
-                    <com.google.android.material.chip.Chip
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Comida"
-                        app:chipBackgroundColor="@color/ash_gray"
-                        android:textColor="@color/brunswick_green"
-                        app:chipIcon="@drawable/ic_food"/>
-
-                    <com.google.android.material.chip.Chip
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Leyendas"
-                        app:chipBackgroundColor="@color/ash_gray"
-                        android:textColor="@color/brunswick_green"
-                        app:chipIcon="@drawable/ic_legend"/>
-
-                </com.google.android.material.chip.ChipGroup>
-
-                <!-- Contenedor para las Tarjetas de Información -->
-                <LinearLayout
-                    android:id="@+id/card_container_results"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <!-- Tarjeta de Ejemplo 1 -->
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="4dp"
-                        android:layout_marginBottom="16dp"
-                        app:cardBackgroundColor="@color/white">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="16dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                android:layout_marginBottom="8dp">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:src="@drawable/ic_location_on_24"
-                                    app:tint="@color/viridian"
-                                    android:layout_marginEnd="8dp"/>
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="Plaza Principal"
-                                    android:textColor="@color/dark_green"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"/>
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_width="48dp"
+            android:layout_height="48dp"/>
 
 
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                android:layout_marginBottom="8dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Histórico"
-                                    android:background="@drawable/rounded_tag_background"
-                                    android:paddingStart="8dp"
-                                    android:paddingEnd="8dp"
-                                    android:paddingTop="4dp"
-                                    android:paddingBottom="4dp"
-                                    android:textColor="@color/white"
-                                    android:textSize="12sp"
-                                    android:layout_marginEnd="8dp"/>
-
-                                <ImageView
-                                    android:layout_width="16dp"
-                                    android:layout_height="16dp"
-                                    android:src="@drawable/ic_access_time_24"
-                                    app:tint="@color/brunswick_green"
-                                    android:layout_marginEnd="4dp"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="1.5 horas"
-                                    android:textColor="@color/brunswick_green"
-                                    android:textSize="14sp"/>
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Corazón del pueblo con arquitectura colonial auténtica."
-                                android:textColor="@color/text_color_secondary"
-                                android:textSize="14sp"
-                                android:layout_marginBottom="16dp"/>
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Ver detalles"
-                                android:backgroundTint="@color/viridian"
-                                android:textColor="@color/white"
-                                style="?attr/materialButtonOutlinedStyle"/>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <!-- Tarjeta de Ejemplo 2 -->
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="4dp"
-                        android:layout_marginBottom="16dp"
-                        app:cardBackgroundColor="@color/white">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="16dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                android:layout_marginBottom="8dp">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:src="@drawable/ic_location_on_24"
-                                    app:tint="@color/viridian"
-                                    android:layout_marginEnd="8dp"/>
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="Cerro del Mirador"
-                                    android:textColor="@color/dark_green"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"/>
-
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                android:layout_marginBottom="8dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Natural"
-                                    android:background="@drawable/rounded_tag_background"
-                                    android:paddingStart="8dp"
-                                    android:paddingEnd="8dp"
-                                    android:paddingTop="4dp"
-                                    android:paddingBottom="4dp"
-                                    android:textColor="@color/white"
-                                    android:textSize="12sp"
-                                    android:layout_marginEnd="8dp"/>
-
-                                <ImageView
-                                    android:layout_width="16dp"
-                                    android:layout_height="16dp"
-                                    android:src="@drawable/ic_access_time_24"
-                                    app:tint="@color/brunswick_green"
-                                    android:layout_marginEnd="4dp"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="2 horas"
-                                    android:textColor="@color/brunswick_green"
-                                    android:textSize="14sp"/>
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Vista panorámica del valle y montañas circundantes."
-                                android:textColor="@color/text_color_secondary"
-                                android:textSize="14sp"
-                                android:layout_marginBottom="16dp"/>
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Ver detalles"
-                                android:backgroundTint="@color/viridian"
-                                android:textColor="@color/white"
-                                style="?attr/materialButtonOutlinedStyle"/>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-            </LinearLayout>
-        </ScrollView>
 
     </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

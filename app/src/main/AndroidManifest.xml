@@ -3,10 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- Permiso para acceder a internet (ya lo tienes) -->
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <!-- AÑADE ESTE PERMISO para acceder a la ubicación precisa -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- Opcional: para ubicación aproximada -->
@@ -17,9 +13,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Xalli"
         android:usesCleartextTraffic="true"
@@ -42,7 +38,8 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".SettingsActivity"
