@@ -20,12 +20,8 @@
         <item name="android:textColor">@color/text_color_primary</item>
         <item name="android:textColorLink">@color/link_color</item>
 
-<<<<<<< HEAD
         <!-- Status bar and navigation bar -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/brunswick_green</item>
         <item name="android:navigationBarColor" tools:targetApi="l">@color/ash_gray</item>
     </style>
-=======
-        </style>
->>>>>>> 94b55f8599bbd949238a7c99c233647148d93f3b
 </resources>
