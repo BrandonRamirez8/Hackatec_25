@@ -1,0 +1,74 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Membresía Premium Xalli"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_green"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¡Desbloquea la experiencia completa de Xalli con nuestra membresía Premium!"
+            android:textSize="16sp"
+            android:textColor="@color/brunswick_green"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Beneficios de la Membresía Premium:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_green"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Sin Anuncios: Disfruta de la aplicación sin interrupciones publicitarias."
+            android:textSize="14sp"
+            android:textColor="@color/text_color_primary"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Chatbot Ilimitado: Acceso ilimitado a nuestro chatbot avanzado para todas tus preguntas de turismo."
+            android:textSize="14sp"
+            android:textColor="@color/text_color_primary"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¡Mejora tu viaje con Xalli Premium!"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:textColor="@color/viridian"/>
+
+        <Button
+            android:id="@+id/btn_become_premium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="¡Conviértete en Premium!"
+            android:backgroundTint="@color/old_gold"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</ScrollView>
