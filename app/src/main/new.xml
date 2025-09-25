@@ -1,0 +1,4 @@
+<com.google.android.material.floatingactionbutton.FloatingActionButtonandroid:id="@+id/fab_center"android:layout_width="wrap_content"android:layout_height="wrap_content"android:src="@drawable/ic_tu_icono"  <!-- Reemplaza con tu ícono deseado -->
+    app:layout_anchor="@id/bottom_navigation" <!-- Ejemplo: Anclándolo al BottomNavigationView -->
+    app:layout_anchorGravity="top|center"android:layout_marginBottom="16dp" />
+    
