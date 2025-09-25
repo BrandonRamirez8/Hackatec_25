@@ -44,6 +44,7 @@ dependencies {
     implementation("com.google.guava:guava:32.1.3-android")
     implementation(libs.generativeai)
     implementation(libs.play.services.location)
+    implementation("com.google.android.gms:play-services-ads:23.0.0") // AdMob
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
