@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Xalli"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:name=".XalliApplication">
         <activity
             android:name=".ResetPassword"
             android:exported="false" />
@@ -40,6 +41,11 @@
         </activity>
         <activity
             android:name=".MainActivity"
+            android:exported="false"
+            android:launchMode="singleTop" />
+
+        <activity
+            android:name=".SettingsActivity"
             android:exported="false" />
 
         <activity

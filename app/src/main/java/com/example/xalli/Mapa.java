@@ -1,6 +1,7 @@
 package com.example.xalli;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +12,11 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageButton;
 import android.widget.Toast;
+import android.app.AlertDialog; // Importar AlertDialog
+import com.example.xalli.XalliApplication; // Importar XalliApplication
+import android.widget.Button; // Importar Button
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -44,6 +49,43 @@ public class Mapa extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mapa, container, false);
+
+        ImageButton btnSettings = view.findViewById(R.id.btn_settings);
+        if (btnSettings != null) {
+            btnSettings.setOnClickListener(v -> {
+                if (getActivity() != null) {
+                    Intent intent = new Intent(getActivity(), SettingsActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
+        ImageButton btnPremium = view.findViewById(R.id.btn_premium);
+        if (btnPremium != null) {
+            btnPremium.setOnClickListener(v -> {
+                if (getActivity() != null) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    LayoutInflater dialogInflater = requireActivity().getLayoutInflater();
+                    View dialogView = dialogInflater.inflate(R.layout.dialog_premium_membership, null);
+
+                    Button btnBecomePremium = dialogView.findViewById(R.id.btn_become_premium);
+                    btnBecomePremium.setOnClickListener(v2 -> {
+                        ((XalliApplication) requireActivity().getApplication()).setPremiumUser(true);
+                        Toast.makeText(getContext(), "¡Eres usuario Premium ahora!", Toast.LENGTH_SHORT).show();
+                        // Opcional: Cerrar el diálogo después de la acción
+                        // dialog.dismiss();
+                    });
+
+                    builder.setView(dialogView)
+                            .setTitle("Membresía Premium")
+                            .setPositiveButton("Entendido", (dialog, id) -> {
+                                // User clicked OK button
+                            });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            });
+        }
 
         webView = view.findViewById(R.id.webview_map);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity());

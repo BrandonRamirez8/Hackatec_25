@@ -9,9 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
+import android.widget.ImageButton;
+// import com.example.xalli.MainActivity; // Importar MainActivity
+import android.app.AlertDialog; // Importar AlertDialog
+import com.example.xalli.XalliApplication; // Importar XalliApplication
+import android.widget.Toast; // Importar Toast
 
 public class Ia extends Fragment {
+
+    private ImageButton btnSettings;
+    private ImageButton btnPremium;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,6 +65,43 @@ public class Ia extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ia, container, false);
+
+        btnSettings = view.findViewById(R.id.btn_settings);
+        if (btnSettings != null) {
+            btnSettings.setOnClickListener(v -> {
+                if (getActivity() != null) {
+                    Intent intent = new Intent(getActivity(), SettingsActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
+        btnPremium = view.findViewById(R.id.btn_premium);
+        if (btnPremium != null) {
+            btnPremium.setOnClickListener(v -> {
+                if (getActivity() != null) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    LayoutInflater dialogInflater = requireActivity().getLayoutInflater();
+                    View dialogView = dialogInflater.inflate(R.layout.dialog_premium_membership, null);
+
+                    Button btnBecomePremium = dialogView.findViewById(R.id.btn_become_premium);
+                    btnBecomePremium.setOnClickListener(v2 -> {
+                        ((XalliApplication) requireActivity().getApplication()).setPremiumUser(true);
+                        Toast.makeText(getContext(), "¡Eres usuario Premium ahora!", Toast.LENGTH_SHORT).show();
+                        // Opcional: Cerrar el diálogo después de la acción
+                        // dialog.dismiss();
+                    });
+
+                    builder.setView(dialogView)
+                            .setTitle("Membresía Premium")
+                            .setPositiveButton("Entendido", (dialog, id) -> {
+                                // User clicked OK button
+                            });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            });
+        }
 
         Button btnOpenChatbot = view.findViewById(R.id.btn_open_chatbot);
         if (btnOpenChatbot != null) {

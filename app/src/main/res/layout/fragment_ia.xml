@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".Ia">
 
+    <include
+        android:id="@+id/fragment_header"
+        layout="@layout/fragment_header" />
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
@@ -17,7 +21,7 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/fragment_header" />
 
     <ImageView
         android:id="@+id/iv_robot"

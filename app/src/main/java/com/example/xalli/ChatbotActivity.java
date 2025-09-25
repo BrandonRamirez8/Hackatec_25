@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+// import com.example.xalli.MainActivity; // Importar MainActivity
+
 public class ChatbotActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewChat;
@@ -33,6 +35,9 @@ public class ChatbotActivity extends AppCompatActivity {
     private Executor executor = Executors.newSingleThreadExecutor();
 
     private static final String API_KEY = "AIzaSyDfJb_vtTkSWMEd091J-d4mYPvxbna3Swo"; // ¡ASEGÚRATE DE QUE ESTA ES TU CLAVE DE API VÁLIDA!
+
+    private int nonPremiumQueryCount = 0;
+    private static final int NON_PREMIUM_QUERY_LIMIT = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +69,20 @@ public class ChatbotActivity extends AppCompatActivity {
         buttonSend.setOnClickListener(v -> {
             String userMessage = editTextMessage.getText().toString().trim();
             if (!userMessage.isEmpty()) {
+                boolean isPremium = ((XalliApplication) getApplicationContext()).isPremiumUser();
+
+                if (!isPremium && nonPremiumQueryCount >= NON_PREMIUM_QUERY_LIMIT) {
+                    Toast.makeText(ChatbotActivity.this, "Has alcanzado el límite de 3 preguntas para usuarios no premium. ¡Conviértete en Premium para acceso ilimitado!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 addMessage(userMessage, true);
                 editTextMessage.setText("");
                 sendToGemini(userMessage);
+
+                if (!isPremium) {
+                    nonPremiumQueryCount++;
+                }
             }
         });
     }

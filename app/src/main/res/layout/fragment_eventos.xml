@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".Eventos">
+
+    <include
+        android:id="@+id/fragment_header"
+        layout="@layout/fragment_header" />
 
     <TextView
         android:id="@+id/tv_cultural_events_title"
@@ -16,7 +19,7 @@
         android:textStyle="bold"
         android:textColor="@color/text_color_primary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/fragment_header" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_cultural_events"
