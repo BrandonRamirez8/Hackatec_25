@@ -47,8 +47,8 @@ public class ChatbotActivity extends AppCompatActivity {
         recyclerViewChat.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewChat.setAdapter(messageAdapter);
 
-        // Inicializa el modelo de Gemini
-        GenerativeModel gm = new GenerativeModel("gemini-2.5-flash", API_KEY); //
+
+        GenerativeModel gm = new GenerativeModel("gemini-2.5-flash", API_KEY); 
         model = GenerativeModelFutures.from(gm);
 
         buttonSend.setOnClickListener(v -> {

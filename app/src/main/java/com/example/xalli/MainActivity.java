@@ -1,23 +1,40 @@
 package com.example.xalli;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-    // Eliminada la declaración de Button fabCenter;
+    private ImageButton btnUserProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home); // Cambiado a home.xml
+        setContentView(R.layout.home);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        // Eliminada la inicialización de fabCenter = findViewById(R.id.button);
+        btnUserProfile = findViewById(R.id.btn_user_profile);
+
+        // Configurar el OnClickListener para el botón de perfil de usuario
+        btnUserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SettingsFragment settingsFragment = new SettingsFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, settingsFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
@@ -43,10 +60,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-        // Eliminado el OnClickListener de fabCenter
-
         if (savedInstanceState == null) {
-            // Cargar el Home Fragment por defecto
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new Home())
                     .commit();
