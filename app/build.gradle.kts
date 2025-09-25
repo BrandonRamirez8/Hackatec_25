@@ -37,7 +37,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation("com.google.ai.client.generativeai:generativeai:0.2.0") // Dependencia de Gemini
+    // implementation("com.google.ai.client.generativeai:generativeai:0.2.0") // Dependencia de Gemini
     implementation("com.squareup.okhttp3:okhttp:4.9.1") // Añadimos OkHttp para solicitudes HTTP
     implementation("com.google.code.gson:gson:2.8.8") // Añadimos Gson para parsear JSON
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")

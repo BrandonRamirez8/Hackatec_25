@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +39,15 @@ public class ChatbotActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatbot);
 
+        Toolbar toolbar = findViewById(R.id.toolbar_chatbot);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+        toolbar.setNavigationOnClickListener(v -> finish());
+
         recyclerViewChat = findViewById(R.id.recycler_view_chat);
         editTextMessage = findViewById(R.id.edit_text_message);
         buttonSend = findViewById(R.id.button_send);
@@ -48,7 +58,7 @@ public class ChatbotActivity extends AppCompatActivity {
         recyclerViewChat.setAdapter(messageAdapter);
 
 
-        GenerativeModel gm = new GenerativeModel("gemini-2.5-flash", API_KEY); 
+        GenerativeModel gm = new GenerativeModel("gemini-2.5-flash", API_KEY);
         model = GenerativeModelFutures.from(gm);
 
         buttonSend.setOnClickListener(v -> {

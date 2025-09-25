@@ -10,11 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Ia#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class Ia extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
