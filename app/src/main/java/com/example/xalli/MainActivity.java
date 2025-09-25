@@ -6,8 +6,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.annotation.NonNull;
+import android.view.View; // Importar View para gestionar visibilidad
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import android.content.SharedPreferences; // Importar SharedPreferences
 import android.content.Context; // Importar Context
@@ -17,6 +21,7 @@ import android.content.Context; // Importar Context
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+    private AdView mAdView; // Declarar AdView
 
     Fragment homeFragment;
     Fragment explorarFragment;
@@ -88,6 +93,18 @@ public class MainActivity extends AppCompatActivity {
             } else if (activeFragment == iaFragment) {
                 bottomNavigationView.setSelectedItemId(R.id.nav_ia);
             }
+        }
+
+        // Lógica de AdMob
+        mAdView = findViewById(R.id.adView);
+        boolean isPremium = ((XalliApplication) getApplication()).isPremiumUser();
+
+        if (isPremium) {
+            mAdView.setVisibility(View.GONE); // Ocultar el anuncio si el usuario es premium
+        } else {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+            mAdView.setVisibility(View.VISIBLE); // Asegurarse de que el anuncio sea visible
         }
 
         bottomNavigationView.setOnItemSelectedListener(item -> {

@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- Opcional: para ubicación aproximada -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 
     <application
@@ -24,6 +26,11 @@
         android:theme="@style/Theme.Xalli"
         android:usesCleartextTraffic="true"
         android:name=".XalliApplication">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6604413875124100~3785332457"/>
+
         <activity
             android:name=".ResetPassword"
             android:exported="false" />

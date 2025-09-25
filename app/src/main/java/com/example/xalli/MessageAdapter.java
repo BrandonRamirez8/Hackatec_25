@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.text.Html; // Importar Html
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,7 +46,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
         Message message = messageList.get(position);
-        holder.messageTextView.setText(message.getText());
+        // Usar Html.fromHtml para interpretar las etiquetas HTML (como <b> para negritas)
+        holder.messageTextView.setText(Html.fromHtml(message.getText(), Html.FROM_HTML_MODE_COMPACT));
     }
 
     @Override

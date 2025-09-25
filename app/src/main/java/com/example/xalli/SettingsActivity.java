@@ -12,23 +12,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 // import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.TextView; // Usar TextView en lugar de TextInputEditText
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
+// import com.google.android.material.textfield.TextInputEditText; // Ya no necesario
 
 import android.app.AlertDialog;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.xalli.XalliApplication; // Importar XalliApplication
+
 public class SettingsActivity extends AppCompatActivity {
 
-    private TextInputEditText etNombreUsuario;
-    private TextInputEditText etEmailConfig;
+    private TextView etNombreUsuario; // Cambiado a TextView
+    private TextView etEmailConfig;   // Cambiado a TextView
     private Button btnCambiarContrasena;
     private Button btnPoliticaPrivacidad;
     private Button btnCerrarSesion;
+    private TextView tvPremiumStatus; // Declarar TextView
 
     // Constructor vacío ya no es necesario para una actividad
     // public SettingsFragment() {
@@ -55,28 +58,49 @@ public class SettingsActivity extends AppCompatActivity {
         btnCambiarContrasena = findViewById(R.id.btn_cambiar_contrasena);
         btnPoliticaPrivacidad = findViewById(R.id.btn_politica_privacidad);
         btnCerrarSesion = findViewById(R.id.btn_cerrar_sesion);
+        tvPremiumStatus = findViewById(R.id.tv_premium_status); // Inicializar TextView
 
         // Cargar datos del usuario (placeholder)
         cargarDatosUsuario();
 
+        // Actualizar estado Premium
+        updatePremiumStatus();
+
         // Listeners para los botones
-        etNombreUsuario.setOnFocusChangeListener((v, hasFocus) -> {
-            if (!hasFocus) {
-                actualizarNombreUsuario(etNombreUsuario.getText().toString());
-            }
-        });
+        // etNombreUsuario.setOnFocusChangeListener((v, hasFocus) -> {
+        //     if (!hasFocus) {
+        //         actualizarNombreUsuario(etNombreUsuario.getText().toString());
+        //     }
+        // }); // Eliminado ya que no es un campo editable
 
         btnCambiarContrasena.setOnClickListener(v -> cambiarContrasena());
         btnPoliticaPrivacidad.setOnClickListener(v -> verPoliticaPrivacidad());
         btnCerrarSesion.setOnClickListener(v -> cerrarSesion());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updatePremiumStatus(); // Actualizar el estado Premium cada vez que la actividad se reanuda
+    }
+
+    private void updatePremiumStatus() {
+        boolean isPremium = ((XalliApplication) getApplication()).isPremiumUser();
+        if (isPremium) {
+            tvPremiumStatus.setText("Estado Premium: Sí");
+        } else {
+            tvPremiumStatus.setText("Estado Premium: No");
+        }
+    }
+
     private void cargarDatosUsuario() {
+        // Estos datos se cargarán de Supabase en una implementación real.
         etNombreUsuario.setText("Nombre de Usuario Actual"); // Placeholder
         etEmailConfig.setText("correo.actual@example.com"); // Placeholder, este campo es no editable
     }
 
     private void actualizarNombreUsuario(String nuevoNombre) {
+        // Este método ya no es relevante si los campos son de solo lectura, pero lo dejo por si acaso
         Toast.makeText(this, "Nombre de usuario actualizado a: " + nuevoNombre, Toast.LENGTH_SHORT).show();
     }
 
@@ -148,10 +172,12 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void cerrarSesion() {
         Toast.makeText(this, "Cerrando sesión...", Toast.LENGTH_SHORT).show();
+        // Restablecer el estado premium a false al cerrar sesión
+        ((XalliApplication) getApplication()).setPremiumUser(false);
         // Después de cerrar sesión, el usuario debería ser redirigido a la pantalla de inicio de sesión.
-        // Intent intent = new Intent(this, LoginActivity.class); // Asegúrate de tener LoginActivity
-        // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Limpia la pila de actividades
-        // startActivity(intent);
-        // finish();
+        Intent intent = new Intent(this, Login.class); // Asegúrate de tener LoginActivity
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Limpia la pila de actividades
+        startActivity(intent);
+        finish();
     }
 }

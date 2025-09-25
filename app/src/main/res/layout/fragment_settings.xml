@@ -66,40 +66,41 @@
                         android:textColor="@color/brunswick_green"
                         android:layout_marginBottom="16dp"/>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/til_nombre_usuario"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    <TextView
+                        android:id="@+id/et_nombre_usuario"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Nombre de Usuario"
-                        android:layout_marginBottom="16dp"
-                        app:startIconDrawable="@drawable/ic_person">
+                        android:text="Nombre de Usuario Actual"
+                        android:textSize="16sp"
+                        android:textColor="@color/text_color_primary"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="4dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:layout_marginBottom="8dp"/>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_nombre_usuario"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPersonName" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/til_email_config"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    <TextView
+                        android:id="@+id/et_email_config"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Correo Electrónico"
-                        app:startIconDrawable="@drawable/ic_email"
-                        android:layout_marginBottom="8dp">
+                        android:text="correo.actual@example.com"
+                        android:textSize="16sp"
+                        android:textColor="@color/text_color_primary"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="4dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:layout_marginBottom="8dp"/>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_email_config"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textEmailAddress"
-                            android:enabled="false" />
+                    <TextView
+                        android:id="@+id/tv_premium_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Estado Premium: No"
+                        android:textSize="16sp"
+                        android:textColor="@color/brunswick_green"
+                        android:layout_marginTop="16dp"/>
 
-                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
