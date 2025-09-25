@@ -1,70 +1,62 @@
 package com.example.xalli;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+// C:/Users/byrur/Documents/Hjasask/app/src/main/java/com/example/xalli/MainActivity.java
+
 public class MainActivity extends AppCompatActivity {
+
     BottomNavigationView bottomNavigationView;
-    private ImageButton btnUserProfile;
+
+    // 1. Declara tus fragmentos como variables de instancia
+    final Fragment homeFragment = new Home();
+    final Fragment explorarFragment = new Explorar();
+    final Fragment mapaFragment = new Mapa();
+    final Fragment eventosFragment = new Eventos();
+    final Fragment iaFragment = new Ia();
+    Fragment activeFragment = homeFragment; // Mantén una referencia al fragmento activo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
+        setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        btnUserProfile = findViewById(R.id.btn_user_profile);
 
-        // Configurar el OnClickListener para el botón de perfil de usuario
-        btnUserProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SettingsFragment settingsFragment = new SettingsFragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, settingsFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        });
+        // 2. Añade todos los fragmentos al inicio, pero ocúltalos
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, iaFragment, "5").hide(iaFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, eventosFragment, "4").hide(eventosFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mapaFragment, "3").hide(mapaFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, explorarFragment, "2").hide(explorarFragment).commit();
+        // Muestra el fragmento inicial (Home)
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, homeFragment, "1").commit();
+
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            Fragment selectedFragment = null;
             int itemId = item.getItemId();
-
+            // 3. Usa show() y hide() para cambiar entre ellos
             if (itemId == R.id.nav_home) {
-                selectedFragment = new Home();
+                getSupportFragmentManager().beginTransaction().hide(activeFragment).show(homeFragment).commit();
+                activeFragment = homeFragment;
             } else if (itemId == R.id.nav_explorar) {
-                selectedFragment = new Explorar();
+                getSupportFragmentManager().beginTransaction().hide(activeFragment).show(explorarFragment).commit();
+                activeFragment = explorarFragment;
             } else if (itemId == R.id.nav_mapa) {
-                selectedFragment = new Mapa();
+                getSupportFragmentManager().beginTransaction().hide(activeFragment).show(mapaFragment).commit();
+                activeFragment = mapaFragment;
             } else if (itemId == R.id.nav_eventos) {
-                selectedFragment = new Eventos();
+                getSupportFragmentManager().beginTransaction().hide(activeFragment).show(eventosFragment).commit();
+                activeFragment = eventosFragment;
             } else if (itemId == R.id.nav_ia) {
-                selectedFragment = new Ia();
+                getSupportFragmentManager().beginTransaction().hide(activeFragment).show(iaFragment).commit();
+                activeFragment = iaFragment;
             }
 
-            if (selectedFragment != null) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, selectedFragment)
-                        .commit();
-            }
             return true;
         });
-
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new Home())
-                    .commit();
-            bottomNavigationView.setSelectedItemId(R.id.nav_home);
-        }
     }
 }
